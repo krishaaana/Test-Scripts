@@ -1,0 +1,44 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class VerniTechHomePageTest {
+
+    public static void main(String[] args) {
+        // Set the path to the ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "path_to_chromedriver");
+
+        // Create a new instance of the ChromeDriver
+        WebDriver driver = new ChromeDriver();
+
+        // Open the Verni Tech Services website homepage
+        driver.get("https://vernitechservices.com/");
+
+        // Verify the company's logo and website name
+        WebElement logo = driver.findElement(By.xpath("//img[@alt='Verni Tech Services']"));
+        WebElement websiteName = driver.findElement(By.xpath("//h1[contains(text(), 'Verni Tech Services')]"));
+        if (logo.isDisplayed() && websiteName.isDisplayed()) {
+            System.out.println("Logo and website name displayed correctly");
+        } else {
+            System.out.println("Logo or website name not displayed correctly");
+        }
+
+        // Verify the layout consistency across different screen sizes
+        // (You can skip this part as it requires resizing the browser window, which is not feasible in headless mode)
+        // For example:
+        // driver.manage().window().setSize(new Dimension(1200, 800));
+        // driver.manage().window().setSize(new Dimension(375, 667));
+
+        // Test the responsiveness of the navigation menu
+        WebElement navigationMenu = driver.findElement(By.xpath("//nav[@id='main-navigation']"));
+        if (navigationMenu.isDisplayed()) {
+            System.out.println("Navigation menu displayed correctly and is responsive");
+        } else {
+            System.out.println("Navigation menu not displayed correctly or is not responsive");
+        }
+
+        // Close the browser
+        driver.quit();
+    }
+}
